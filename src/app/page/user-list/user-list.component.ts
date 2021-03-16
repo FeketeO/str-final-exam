@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
   }
 
   onDelete(user: User): void {
-    if (window.confirm('Are you sure you want to delete this item ?')) {
+    if (window.confirm('Are you sure you want to delete this user ?')) {
     this.userService.remove(user).subscribe(
       () => {
         this.userService.getAll();
