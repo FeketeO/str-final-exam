@@ -1,22 +1,28 @@
-<div class="card">
-  <div class="card-header card-header-info">
-      <h4 class="card-title ">Filter</h4>
-      <div class="d-flex p-2 mb-3 filter__group">
-          <input [(ngModel)]="filterPhrase" class="form-control" type="text"
-              placeholder="Searching..." style="width: 200px;">
-          <select [(ngModel)]="filterKey" class="form-control mr-3 filter__select px-3" style="width: 150px;">
-              <option value="id">id</option>
-              <option value="name">name</option>
-              <option value="email">email</option>
-              <option value="address">address</option>
-              <option value="active">active</option>
-          </select>
-      </div>
-  </div>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-2">
+    <button type="button" routerLink="/user/0" class="btn btn-success btn-block">Add user</button>
+
+
 <div class="row">
   <div class="col-12 mt-2">
     <h2>User List</h2>
+    <div class="card">
+      <div class="card-header card-header-info">
+          <h4 class="card-title ">Filter</h4>
+          <div class="d-flex p-2 mb-3 filter__group">
+              <input [(ngModel)]="filterPhrase" class="form-control" type="text"
+                  placeholder="Searching..." style="width: 200px;">
+              <select [(ngModel)]="filterKey" class="form-control mr-3 filter__select px-3" style="width: 150px;">
+                  <option value="id">id</option>
+                  <option value="name">name</option>
+                  <option value="email">email</option>
+                  <option value="address">address</option>
+                  <option value="active">active</option>
+              </select>
+          </div>
+      </div>
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -52,4 +58,8 @@
       </tbody>
     </table>
   </div>
+</div>
+
+</div>
+</div>
 </div>
