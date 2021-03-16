@@ -37,37 +37,20 @@ export class UserEditorComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit(): void {this.activatedRoute.params.subscribe(
-    params =>{
-      if (params.id == 0){
+  ngOnInit(): void {}
 
-      }
-      else
-        this.userService.get(params.id).subscribe(
-          item => {
-            this.user = item;
-          })
-    }
-  )
-  }
-
-  onFormSubmit(form: NgForm, element: User): void {
-    try {
-      if (element.id == 0) {
-        this.userService.create(element).subscribe(
-          () => this.router.navigate(['/'])
+  onFormSubmit(form: NgForm, user: User): void {
+      if (user.id == 0) {
+        this.userService.create(user).subscribe(
+          () => this.userService.getAll()
         );
       }
       else {
-        this.userService.update(element).subscribe(
-          () => this.router.navigate(['/'])
+        this.userService.update(user).subscribe(
+          () => this.userService.getAll()
         );
       }
-    } catch (error) {
-
+      this.router.navigate(["/"])
     }
   }
 
-
-
-}

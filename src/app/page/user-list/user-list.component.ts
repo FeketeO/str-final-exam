@@ -11,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  users$: Observable<User[]> = this.userService.getAll();
+  users$: Observable<User[]> = this.userService.userList$;
 
   filterPhrase: string = '';
   filterKey: string = 'name';
@@ -25,16 +25,26 @@ export class UserListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getAll()
+    this.userService.getAll();
+    this.users$.subscribe();
   }
 
   onDelete(user: User): void {
+    if (window.confirm('Are you sure you want to delete this item ?')) {
     this.userService.remove(user).subscribe(
       () => {
         this.userService.getAll();
       }
     );
+    }
   }
+
+
+
+
+
+
+
 
   changeOrder(param: string): void {
     if (this.sortby === '' || this.sortby != param) {
@@ -46,7 +56,6 @@ export class UserListComponent implements OnInit {
     }
     this.sortby = param;
   }
-
 
   }
 
