@@ -1,19 +1,38 @@
+<div class="card">
+  <div class="card-header card-header-info">
+      <h4 class="card-title ">Filter</h4>
+      <div class="d-flex p-2 mb-3 filter__group">
+          <input [(ngModel)]="filterPhrase" class="form-control" type="text"
+              placeholder="Searching..." style="width: 200px;">
+          <select [(ngModel)]="filterKey" class="form-control mr-3 filter__select px-3" style="width: 150px;">
+              <option value="id">id</option>
+              <option value="name">name</option>
+              <option value="email">email</option>
+              <option value="address">address</option>
+              <option value="active">active</option>
+          </select>
+      </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-12 mt-2">
     <h2>User List</h2>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>Active</th>
+          <th (click)="changeOrder('id')">#</th>
+          <th (click)="changeOrder('name')">Name</th>
+          <th (click)="changeOrder('email')">Email</th>
+          <th (click)="changeOrder('address')">Address</th>
+          <th (click)="changeOrder('active')">Active</th>
           <th></th>
+          <th><i *ngIf="sorterDirection === 1" class="fa fa-arrow-up"></i>
+              <i *ngIf="sorterDirection ===2" class="fa fa-arrow-down"></i>
+        </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async">
+        <tr *ngFor="let user of users$ | async | filter:filterPhrase:filterKey | sorter:sortby:sorterDirection">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
@@ -24,7 +43,7 @@
               <button [routerLink]="['user/' + user.id]" class="btn btn-info">
                 <i class="fa fa-pencil"></i>
               </button>
-              <button class="btn btn-danger">
+              <button class="btn btn-danger" (click)="onDelete(user)" onClick="return confirm('Are you sure you want to delete?')">
                 <i class="fa fa-trash"></i>
               </button>
             </div>
