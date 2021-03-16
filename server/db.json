@@ -1,15 +1,8 @@
 {
   "users": [
     {
-      "id": 32,
-      "name": "Andree Tilney ",
-      "email": "atilneyv@admin.ch",
-      "address": "72 Lake View Parkway",
-      "active": true
-    },
-    {
       "id": 34,
-      "name": "Jermaine Wisniowski",
+      "name": "Jermaine Wisniowski Nuhaui",
       "email": "jwisniowskix@freewebs.com",
       "address": "42 Briar Crest Court",
       "active": true
